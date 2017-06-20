@@ -1,7 +1,8 @@
 <?php 
 namespace newrow\settings;
 
-use yii\base\Module as BaseModule; 
+use yii\base\Module as BaseModule;
+use yii\web\ForbiddenHttpException;
 
 class Module extends BaseModule
 {
@@ -21,7 +22,7 @@ class Module extends BaseModule
      */
     public function beforeAction($action)
     {
-        if ($this->checkRoles()) {
+        if ($this->checkRoles($this->roles)) {
             return parent::beforeAction($action);
         } else {
             throw new ForbiddenHttpException('You are not allowed to access this page.');
@@ -42,7 +43,7 @@ class Module extends BaseModule
         }
 
         foreach ($roles as $role) {
-            if (Yii::$app->user->can($role)) {
+            if (\Yii::$app->user->can($role)) {
                 return true;
             }
         }
