@@ -8,7 +8,7 @@ class m140618_045255_create_settings extends \yii\db\Migration
     public function up()
     {
         $this->createTable(
-            'settings',
+            Settings::tableName(),
             [
                 'id' => Schema::TYPE_PK,
                 'type' => Schema::TYPE_STRING,
@@ -21,7 +21,7 @@ class m140618_045255_create_settings extends \yii\db\Migration
 
     public function down()
     {
-        $this->dropTable('settings');
+        $this->dropTable(Settings::tableName());
         return true;
     }
 }
