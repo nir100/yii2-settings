@@ -21,13 +21,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist johnitvn/yii2-settings "*"
+php composer.phar require --prefer-dist newrow/yii2-settings "*"
 ```
 
 or add
 
 ```
-"johnitvn/yii2-settings": "*"
+"newrow/yii2-settings": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -41,7 +41,8 @@ Usage
 ````php
 'components' => [        
     'settings'=>[
-        'class'=>'johnitvn\settings\Settings'
+        'class'=>'newrow\settings\Settings',
+        'roles' => ['admin'],  
     ],
 ],
 ````
@@ -76,7 +77,7 @@ And the $type will be use for get settings. This extension have used [settype](h
 ````php
 'modules' => [
     'settings' =>  [
-        'class'=>'johnitvn\settings\Module',
+        'class'=>'newrow\settings\Module',
     ]       
 ]
 ````

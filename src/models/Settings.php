@@ -1,6 +1,6 @@
 <?php
 
-namespace johnitvn\settings\models;
+namespace newrow\settings\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -23,7 +23,7 @@ class Settings extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'settings';
+        return '{{%settings}}';
     }
 
     /**

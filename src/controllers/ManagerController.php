@@ -1,10 +1,10 @@
 <?php
 
-namespace johnitvn\settings\controllers;
+namespace newrow\settings\controllers;
 
 use Yii;
-use johnitvn\settings\models\Settings;
-use johnitvn\settings\models\SettingsSearch;
+use newrow\settings\models\Settings;
+use newrow\settings\models\SettingsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

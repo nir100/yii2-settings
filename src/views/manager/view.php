@@ -3,7 +3,7 @@
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model johnitvn\settings\models\Settings */
+/* @var $model newrow\settings\models\Settings */
 ?>
 <div class="settings-view">
  
