@@ -1,12 +1,12 @@
 {
-    "name": "valery-lavrik/yii2-settings",
+    "name": "newrow/yii2-settings",
     "description": "Yii2 settings with database module with GUI manager supported",
     "type": "yii2-extension",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "John Martin",
-            "email": "john.itvn@gmail.com"
+            "name": "Nir Eli",
+            "email": "nir@newrow.com"
         }
     ],
     "minimum-stability": "dev",
