@@ -38,7 +38,7 @@ class ManagerController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {    
+    {
         $searchModel = new SettingsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -55,19 +55,19 @@ class ManagerController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {   
+    {
         $request = Yii::$app->request;
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'error'=>false,
-                    'title'=> "Settings #".$id,
-                    'content'=>$this->renderPartial('view', [
-                        'model' => $this->findModel($id),
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];    
+                'error'=>false,
+                'title'=> "Settings #".$id,
+                'content'=>$this->renderPartial('view', [
+                    'model' => $this->findModel($id),
+                ]),
+                'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                    Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+            ];
         }else{
             return $this->render('view', [
                 'model' => $this->findModel($id),
@@ -84,7 +84,7 @@ class ManagerController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new Settings();  
+        $model = new Settings();
 
         if($request->isAjax){
             /*
@@ -99,19 +99,22 @@ class ManagerController extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
+                        Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+
+                ];
             }else if($model->load($request->post()) && $model->save()){
+
+                Yii::$app->settings->clearCache();
+
                 return [
                     'error'=>false,
                     'title'=> "Create new Settings",
                     'content'=>'<span class="text-success">Create Settings success</span>',
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-        
-                ];         
-            }else{           
+                        Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+
+                ];
+            }else{
                 return [
                     'error'=>false,
                     'title'=> "Create new Settings",
@@ -119,9 +122,9 @@ class ManagerController extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
+                        Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+
+                ];
             }
         }else{
             /*
@@ -135,7 +138,7 @@ class ManagerController extends Controller
                 ]);
             }
         }
-       
+
     }
 
     /**
@@ -148,7 +151,7 @@ class ManagerController extends Controller
     public function actionUpdate($id)
     {
         $request = Yii::$app->request;
-        $model = $this->findModel($id);       
+        $model = $this->findModel($id);
 
         if($request->isAjax){
             /*
@@ -163,9 +166,12 @@ class ManagerController extends Controller
                         'model' => $this->findModel($id),
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-                ];         
+                        Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                ];
             }else if($model->load($request->post()) && $model->save()){
+
+                Yii::$app->settings->clearCache();
+
                 return [
                     'error'=>false,
                     'title'=> "Settings #".$id,
@@ -173,8 +179,8 @@ class ManagerController extends Controller
                         'model' => $this->findModel($id),
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];    
+                        Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];
             }else{
                 return [
                     'code'=>'400',
@@ -182,7 +188,7 @@ class ManagerController extends Controller
                     'data'=>$this->renderPartial('update', [
                         'model' => $model,
                     ]),
-                ];         
+                ];
             }
         }else{
             /*
@@ -208,11 +214,12 @@ class ManagerController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->settings->clearCache();
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return ['forceClose'=>true,'forceReload'=>true];         
+        return ['forceClose'=>true,'forceReload'=>true];
     }
 
-     /**
+    /**
      * Delete multiple existing Settings model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
@@ -220,14 +227,14 @@ class ManagerController extends Controller
      * @return mixed
      */
     public function actionBulkDelete()
-    {        
+    {
         $request = Yii::$app->request;
         $pks = $request->post('pks'); // Array or selected records primary keys
         foreach (Settings::findAll(json_decode($pks)) as $model) {
             $model->delete();
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return ['forceClose'=>true,'forceReload'=>true]; 
+        return ['forceClose'=>true,'forceReload'=>true];
     }
 
     /**

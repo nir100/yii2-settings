@@ -6,18 +6,14 @@ return [
         'class' => 'kartik\grid\CheckboxColumn',
         'width' => '20px',
     ],
-    [
-        'class' => 'kartik\grid\SerialColumn',
-        'width' => '30px',
-    ],
-        // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id',
-    // ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'type',
-    ],
+//    [
+//        'class' => 'kartik\grid\SerialColumn',
+//        'width' => '30px',
+//    ],
+         [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'id',
+     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'section',
@@ -29,6 +25,10 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'value',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'type',
     ],
     [
         'class' => 'kartik\grid\ActionColumn',
