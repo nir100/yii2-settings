@@ -15,6 +15,7 @@ use yii\widgets\DetailView;
             'section',
             'key',
             'value:ntext',
+            'comment'
         ],
     ]) ?>
 

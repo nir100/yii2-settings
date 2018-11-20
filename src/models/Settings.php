@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $active
  * @property string $created
  * @property string $modified
+ * * @property string $comment
  */
 class Settings extends \yii\db\ActiveRecord
 {
@@ -32,7 +33,7 @@ class Settings extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['value'], 'string'],
+            [['value', 'comment'], 'string'],
             [['type', 'section', 'key'], 'string', 'max' => 255],
             [['type','section','key'],'required'],
             [['type'],'in','range'=>['string','integer','boolean','float','null']],
@@ -50,6 +51,7 @@ class Settings extends \yii\db\ActiveRecord
             'section' => 'Section',
             'key' => 'Key',
             'value' => 'Value',
+            'comment' => 'Comment'
         ];
     }
 
@@ -73,10 +75,11 @@ class Settings extends \yii\db\ActiveRecord
      * @param $key
      * @param $value
      * @param $type
-     * @return bool
+     * @param $comment
+      * @return bool
      * @throws \yii\base\InvalidConfigException
      */
-    public function setSetting($section, $key, $value, $type = null)
+    public function setSetting($section, $key, $value, $type = null, $comment = '')
     {
         $model = static::findOne(['section' => $section, 'key' => $key]);
         if ($model === null) {
@@ -85,6 +88,7 @@ class Settings extends \yii\db\ActiveRecord
         $model->section = $section;
         $model->key = $key;
         $model->value = strval($value);
+        $model->comment =  $comment;
         if ($type !== null) {
             $model->type = $type;
         } else {

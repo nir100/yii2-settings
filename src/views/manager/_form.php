@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'value')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'comment')->textarea(['rows' => 2]) ?>
+
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">

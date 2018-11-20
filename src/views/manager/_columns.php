@@ -31,6 +31,10 @@ return [
         'attribute'=>'type',
     ],
     [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'comment',
+    ],
+    [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',

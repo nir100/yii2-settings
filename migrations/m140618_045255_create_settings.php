@@ -14,7 +14,8 @@ class m140618_045255_create_settings extends \yii\db\Migration
                 'type' => Schema::TYPE_STRING,
                 'section' => Schema::TYPE_STRING,
                 'key' => Schema::TYPE_STRING,
-                'value' => Schema::TYPE_TEXT,               
+                'value' => Schema::TYPE_TEXT,
+                'comment' => Schema::TYPE_TEXT
             ]
         );
     }
